@@ -24,4 +24,8 @@ public class Station extends State {
     public String toString() {
         return name + " " + line;
     }
+
+    public int getLine(){
+        return line;
+    }
 }

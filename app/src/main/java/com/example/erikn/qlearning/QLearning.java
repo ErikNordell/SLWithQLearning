@@ -34,8 +34,8 @@ public class QLearning {
     private void calcQLearning(int x) {
         for(int i = 0 ; i < x ; i++){
             for(Action a: actionHashMap.values()){
-                if(a.getStart().getBestConnectingAction()!=null){
-                    a.setScore( a.getStart().getBestConnectingAction().getScore() * a.getPenalty());
+                if(a.getGoal().getBestPossibleAction()!=null){
+                    a.setScore( a.getGoal().getBestPossibleAction().getScore() * a.getPenalty());
                 }
             }
         }
@@ -63,7 +63,30 @@ public class QLearning {
         return stateHashMap.get(key);
     }
 
+    public String toStringState(String key){
+        String result = "";
+        State state = stateHashMap.get(key);
+        if(state!=null){
+            result += state.toString() + ": " + state.actionsToString();
+        }
+        return result;
+    }
 
 
+    public ArrayList<Action> getBestActionSequens(State start, State goal) {
+        //Log.e("Kista11 ", "test");
+        ArrayList<Action> bestWay = new ArrayList<>();
+        boolean onRoute = true;
+        while(onRoute){
+            //Log.e("Kista11 ", start.toString());
+            Action action = start.getBestPossibleAction();
+            bestWay.add(action);
+            start = action.getGoal();
+            if(start.equals(goal)){
+                onRoute = false;
+            }
+        }
+        return bestWay;
+    }
 
 }

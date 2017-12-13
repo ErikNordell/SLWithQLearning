@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private QLearning qLearning;
@@ -21,6 +23,19 @@ public class MainActivity extends AppCompatActivity {
         qLearning.runQLearning(qLearning.getState("Rådhuset11"));
 
         Log.e("qLearning.toString", qLearning.toString());
+        Log.e("Rådhuset11 ", qLearning.toStringState("Rådhuset11"));
+        Log.e("Kista11 ", qLearning.toStringState("Kista11"));
+
+        Log.e("Kista11 ", "test1");
+
+        /*ArrayList<Action> bestActions = qLearning.getBestActionSequens(qLearning.getState("Kista11"), qLearning.getState("Rådhuset11"));
+        Log.e("Kista11 ", "test2");
+
+        for(Action action : bestActions){
+            Log.e("Kista11 ", "test3");
+            Log.e("Best Way", action.getStart().getKey() + " to "+action.getGoal().getKey() + ", Score: " + action.getScore());
+        }
+        */
     }
 
 

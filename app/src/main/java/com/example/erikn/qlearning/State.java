@@ -20,9 +20,21 @@ public abstract class State {
 
     public Action getBestConnectingAction(){
         Action best = null;
-        //Log.e("hej","hej");
         for(Action action : connectingActions){
-            //Log.e(action.getKey(), " " + action.getScore());
+            if(best ==null){
+                best = action;
+            }else{
+                if(best.getScore()<action.getScore()){
+                    best = action;
+                }
+            }
+        }
+        return best;
+    }
+
+    public Action getBestPossibleAction(){
+        Action best = null;
+        for(Action action : possibleActions){
             if(best ==null){
                 best = action;
             }else{
@@ -50,5 +62,18 @@ public abstract class State {
             Log.e("Score ", action.getKey() + " " +score);
             action.setScore(score);
         }
+    }
+
+
+    public String actionsToString() {
+        String result = "";
+        /*for(Action action : connectingActions){
+            result += action.getStart() + ", score: " + action.getScore() + ", ";
+        }*/
+        result += "\nConnecting to: ";
+        for(Action action : possibleActions){
+            result += action.getGoal() + ", score: " + action.getScore() + "\n";
+        }
+        return result;
     }
 }
