@@ -20,32 +20,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     Spinner spinnerFrom;
     Spinner spinnerTo;
     List<String> names;
-    String[] stationName = {"Akalla11",
-            "Husby11",
-            "Kista11",
-            "Hallonbergen11",
-            "Näckrosen11",
-            "Solna Centrum11",
-            "Västra Skogen11",
-            "Stadshagen11",
-            "Fridhemsplan11",
-            "Rådhuset11",
-            "T-Centralen11",
-            "Kungsträdgården11",
-            "Hjulsta10",
-            "Tensta10",
-            "Rinkeby10",
-            "Rissne10",
-            "Duvbo10",
-            "Sundbybergs centrum10",
-            "Solna strand10",
-            "Huvudsta10",
-            "Västra Skogen10",
-            "Stadshagen10",
-            "Fridhemsplan10",
-            "Rådhuset10",
-            "T-Centralen10",
-            "Kungsträdgården10"};
+    String[] stationName = {"Akalla11", "Husby11", "Kista11", "Hallonbergen11", "Näckrosen11", "Solna Centrum11", "Västra Skogen11",
+            "Stadshagen11", "Fridhemsplan11", "Rådhuset11", "T-Centralen11", "Kungsträdgården11", "Hjulsta10", "Tensta10", "Rinkeby10",
+            "Rissne10", "Duvbo10", "Sundbybergs centrum10", "Solna strand10", "Huvudsta10", "Västra Skogen10", "Stadshagen10", "Fridhemsplan10",
+            "Rådhuset10", "T-Centralen10", "Kungsträdgården10"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,12 +41,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         for (String s : stationName) {
             names.add(s);
         }
-        /*
-        names = new ArrayList<String>();
-        for (Station station : stationHashMap.values()) {
-            names.add(station.getName()+ "  " + station.getLine());
-        }
-        */
+
 
         ArrayAdapter<String> fromAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, names);
         ArrayAdapter<String> toAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, names);
@@ -84,84 +57,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         createModel();
 
-        fillSpinners();
-
-        /*
-        qLearning.runQLearning(qLearning.getState("Rådhuset11"));
-
-        Log.e("qLearning.toString", qLearning.toString());
-
-        Log.e("write all ", qLearning.toStringState("Rådhuset11"));
-
-        Log.e("write all  ", qLearning.toStringState("Fridhemsplan11"));
-        Log.e("write all  ", qLearning.toStringState("Stadshagen11"));
-        Log.e("write all  ", qLearning.toStringState("Västra skogen11"));
-        Log.e("write all ", qLearning.toStringState("Solna Centrum11"));
-        Log.e("write all  ", qLearning.toStringState("Näckrosen11"));
-        Log.e("write all  ", qLearning.toStringState("Hallonbergen11"));
-
-        Log.e("write all  ", qLearning.toStringState("Kista11"));
-
-
-
-        ArrayList<Action> bestActions = qLearning.getBestActionSequens(qLearning.getState("Kista11"), qLearning.getState("Rådhuset11"));
-
-
-        String wayToGo = "";
-        for(Action action : bestActions){
-            wayToGo += "" + action.getStart().getKey() + " to "+action.getGoal().getKey() + "\n";
-            Log.e("Best Way", action.getStart().getKey() + " to "+action.getGoal().getKey() + ", Score: " + action.getScore());
-        }
-
-        TextView mainText = (TextView) findViewById(R.id.mainText);
-        mainText.setText(wayToGo);
-        */
 
     }
 
-    private void fillSpinners() {
-        String[] stationName = {"Akalla11",
-                "Husby11",
-                "Kista11",
-                "Hallonbergen11",
-                "Näckrosen11",
-                "Solna Centrum11",
-                "Västra Skogen11",
-                "Stadshagen11",
-                "Fridhemsplan11",
-                "Rådhuset11",
-                "T-Centralen11",
-                "Kungsträdgården11",
-                "Hjulsta10",
-                "Tensta10",
-                "Rinkeby10",
-                "Rissne10",
-                "Duvbo10",
-                "Sundbybergs centrum10",
-                "Solna strand10",
-                "Huvudsta10",
-                "Västra Skogen10",
-                "Stadshagen10",
-                "Fridhemsplan10",
-                "Rådhuset10",
-                "T-Centralen10",
-                "Kungsträdgården10"};
-
-        List<String> namesList = new ArrayList<>();
-        for (String s : stationName) {
-            namesList.add(s);
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, namesList);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        Spinner spinnerFrom = (Spinner) findViewById(R.id.spinnerFrom);
-        Spinner spinnerTo = (Spinner) findViewById(R.id.spinnerTo);
-
-        spinnerFrom.setAdapter(adapter);
-        spinnerTo.setAdapter(adapter);
-
-    }
 
     private void createModel() {
         addBlueLine();
@@ -265,15 +163,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
-   /* @Override
-    public void onClick(View view) {
-        Log.e("onClick","start");
-        if(view.equals(findViewById(R.id.button))){
-            Log.e("onClick","view==button");
-            runQLearing();
-        }
-    }*/
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String item = parent.getItemAtPosition(position).toString();
@@ -288,7 +177,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void buttonOnClick(View v) {
         Button button = (Button) v;
         ((Button) v).setText("Q-Learning activated");
-        Log.e(" hej ", " hej ");
         runQLearing();
     }
 
@@ -310,7 +198,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         TextView mainText = (TextView) findViewById(R.id.mainText);
         mainText.setText(wayToGo);
-        
 
     }
 

@@ -22,8 +22,6 @@ public class Connection extends Action {
     @Override
     protected double calcPenalty() {
 
-        //return 0.8;
-
         Station s = (Station) super.getStart();
         Station g = (Station) super.getGoal();
         double sensorValue = 1.0;
@@ -34,7 +32,7 @@ public class Connection extends Action {
         }
 
 
-        return ((60.0-connectionTime)/(60.0));
+        return ((60.0-(connectionTime + sensorValue))/(60.0));
 
 
     }
