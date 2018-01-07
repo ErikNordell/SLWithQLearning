@@ -32,13 +32,16 @@ public class QLearning {
     }
 
     private void calcQLearning(int x) {
+        int count = 0;
         for(int i = 0 ; i < x ; i++){
             for(Action a: actionHashMap.values()){
+                count++;
                 if(a.getGoal().getBestPossibleAction()!=null){
                     a.setScore( a.getGoal().getBestPossibleAction().getScore() * a.getPenalty());
                 }
             }
         }
+        Log.e("Count ", "" + count);
     }
 
     private void setStartScore(State goal) {
